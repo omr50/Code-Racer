@@ -1,0 +1,6 @@
+- add red for incorrect space (enter or any other character instead of space)
+  for now it just goes unnoticed
+
+- make the box only fit the code
+
+- some way to make the code snippets have color like a code editor
