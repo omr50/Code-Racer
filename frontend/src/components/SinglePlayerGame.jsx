@@ -248,6 +248,7 @@ function SinglePlayerGame() {
 
 
   return (
+    <div className="game-contain">
     <div className="game-page">
       {/* HEADER */}
       <div className="game-header">
@@ -274,26 +275,27 @@ function SinglePlayerGame() {
         onKeyDown={onKeyDown}
       >
         
-<div className="code-wrapper">
-  <pre className="code syntax">
-    <code dangerouslySetInnerHTML={{ __html: highlighted }} />
-  </pre>
+        <div className="code-wrapper">
+            <pre className="code syntax">
+                <code dangerouslySetInnerHTML={{ __html: highlighted }} />
+            </pre>
 
-  <pre className="code overlay">
-    {renderTypedOverlay()}
-  </pre>
-</div>
+            <pre className="code overlay">
+                {renderTypedOverlay()}
+            </pre>
+      </div>
 
 
 
         {/* Cursor */}
         <div
-          className="cursor"
-          style={{
-            transform: `translateY(${Math.floor(codeRef.current.length / 80) * 1.6}em)`
-          }}
+        className="cursor"
+        style={{
+        transform: `translateY(${Math.floor(codeRef.current.length / 80) * 1.6}em)`
+        }}
         />
-      </div>
+    </div>
+    </div>
     </div>
   );
 }

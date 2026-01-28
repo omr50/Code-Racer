@@ -1,9 +1,20 @@
+
+.game-contain {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+}
 .game-page {
-  height: 100vh;
+  margin: 10px;
+  border-radius: 20px ;
+  height: fit-content;
   background: #020617;
   color: white;
+
   display: flex;
   flex-direction: column;
+  align-items: center;      /* horizontal centering */
+
 }
 
 .game-header {
@@ -48,7 +59,7 @@
 
 .code {
   font-family: "JetBrains Mono", monospace;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.6;
   white-space: pre;
   margin: 0;

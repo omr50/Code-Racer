@@ -4,3 +4,7 @@
 - make the box only fit the code
 
 - some way to make the code snippets have color like a code editor
+
+- cursor should blink to allow you to see the character or at least be a bit opaque
+
+- allow user to type if focused in the whole page, not specific element, or inform them they aren't focused

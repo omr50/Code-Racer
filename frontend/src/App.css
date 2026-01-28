@@ -1,9 +1,12 @@
 #root {
-  max-width: 1280px;
+  width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
+html, body {
+  overflow: hidden; /* Hides both horizontal and vertical scrollbars and disables scrolling */
+}
+
 
 .logo {
   height: 6em;
