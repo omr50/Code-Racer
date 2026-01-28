@@ -8,3 +8,13 @@
 - cursor should blink to allow you to see the character or at least be a bit opaque
 
 - allow user to type if focused in the whole page, not specific element, or inform them they aren't focused
+
+- when going to new game reset timer to 0 even before they type
+
+- features:
+  - account
+  - if no account save to local storage
+  - wpm from each game saved to construct chart along with date / time
+      - total words typed in lifetime
+      - the total mistakes per game chart
+      - filter per language

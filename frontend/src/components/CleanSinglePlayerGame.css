@@ -6,7 +6,7 @@
 }
 .game-page {
   margin: 10px;
-  border-radius: 20px ;
+  border-radius: 20px;
   height: fit-content;
   background: #020617;
   color: white;
@@ -19,15 +19,16 @@
 
 .game-header {
   display: flex;
+  border-radius: 20px 20px 0px 0px;
   justify-content: space-between;
   padding: 12px 20px;
-  background: #020617;
+  background: #0e0b0b;
   border-bottom: 1px solid #1e293b;
 }
 
 .langs button {
   background: transparent;
-  color: #94a3b8;
+  color: #94b8a7;
   border: none;
   margin-right: 12px;
   cursor: pointer;
@@ -129,4 +130,23 @@
   50% {
     opacity: 0;
   }
+}
+
+.lang-button {
+  display: inline-flex;
+  align-items: center;      /* 🔑 vertical alignment */
+  gap: 8px;
+  
+}
+
+.lang-icon svg {
+  display: block;           /* removes baseline weirdness */
+}
+
+.lang-text {
+  text-shadow:
+    -0.5px -0.5px 0 #434549,
+     0.5px -0.5px 0 #4a4c53,
+    -0.5px  0.5px 0 #605858,
+     0.5px  0.5px 0 #4e4848;
 }

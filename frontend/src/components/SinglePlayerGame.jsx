@@ -7,6 +7,7 @@ import "prismjs/themes/prism-tomorrow.css";
 
 import "./CleanSinglePlayerGame.css"
 import EndGame from "./EndGame/EndGame";
+import { Languages } from "./Nav/languages";
 
 function SinglePlayerGame() {
   const navigate = useNavigate();
@@ -253,13 +254,14 @@ function SinglePlayerGame() {
       {/* HEADER */}
       <div className="game-header">
         <div className="langs">
-          {["javascript", "python", "go", "cpp"].map(l => (
+          {Languages.map(l => (
             <button
-              key={l}
-              className={language === l ? "active" : ""}
-              onClick={() => navigate(`/game/${l}`)}
+              key={l.language}
+              className={language === l.language ? "active" : ""}
+              onClick={() => navigate(`/game/${l.language}`)}
             >
-              {l.toUpperCase()}
+         <span className="lang-icon">{l.img}</span>
+         <span style={{color: l.color }} className="lang-text">{l.language.toUpperCase()}</span>
             </button>
           ))}
         </div>

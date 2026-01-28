@@ -1,8 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { Languages } from "./languages";
 import "./Navbar.css";
 
-const LANGUAGES = ["javascript", "python", "go", "cpp"];
 
 function Navbar() {
   const navigate = useNavigate();
@@ -31,9 +31,9 @@ function Navbar() {
           onChange={(e) => setLanguage(e.target.value)}
           className="navbar-select"
         >
-          {LANGUAGES.map(l => (
-            <option key={l} value={l}>
-              {l.toUpperCase()}
+          {Languages.map(l => (
+            <option key={l} value={l.language}>
+              {l.symbol + " " + l.language.toUpperCase()}
             </option>
           ))}
         </select>
