@@ -11,10 +11,15 @@
 
 - when going to new game reset timer to 0 even before they type
 
+- if there's an error best to make everything after it red so user knows to go back to it
+
+- make html not have red text/green text, or make the (correct/incorrect) lighting better
 - features:
   - account
   - if no account save to local storage
   - wpm from each game saved to construct chart along with date / time
       - total words typed in lifetime
       - the total mistakes per game chart
-      - filter per language
+      - filter per languagea
+
+  - add the enter emoji again when about to enter
