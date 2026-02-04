@@ -184,7 +184,8 @@ function SinglePlayerGame() {
   useEffect(() => {
     async function getSnippet() {
       try {
-        const response = await axios.get(`http://localhost:8000/game/${language}`)
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL + `/game/${language}`)
+        console.log("TEST BACKEND?", import.meta.env.VITE_BACKEND_URL)
         return response;
       } catch (e) {
         console.log(e)
@@ -215,6 +216,7 @@ function SinglePlayerGame() {
         .then((response) => {
           if (response) {
             setSnippet(response.data.snippet)
+            console.log("SNIPPET?", response.data.snippet)
             codeRef.current = response.data.snippet;
           }
         })

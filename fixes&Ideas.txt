@@ -23,3 +23,8 @@
       - filter per languagea
 
   - add the enter emoji again when about to enter
+
+  - tabs in the code snippet should have an emoji for it 
+  - tabs currently exit you out of the code snippet box and messes up the time.
+  
+  - possibly allow users to submit errors (get back the id of the actual one that caused the error and persist it)

@@ -24,7 +24,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/auth/**").permitAll()
                     .requestMatchers("/public/**").permitAll()
-                    .requestMatchers("/snippet/**").permitAll()
+                    .requestMatchers("/game/**").permitAll()
+                    .requestMatchers("/home").permitAll()
                     .anyRequest().authenticated()
             );
 
