@@ -1,7 +1,15 @@
 import TypedTitle from "./TypedTitle";
 import LanguageCarousel from "./LanguageCarousel";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
+
+  const navigate = useNavigate();
+
+  const startGame = () => {
+    navigate(`/game/c`);
+  };
+
   return (
     <div className="home">
 
@@ -16,7 +24,7 @@ export default function HomePage() {
 
         <div className="hero-actions">
           <LanguageCarousel />
-          <button className="play-button">
+          <button className="play-button" onClick={startGame}>
             ▶ Play Now
           </button>
         </div>
