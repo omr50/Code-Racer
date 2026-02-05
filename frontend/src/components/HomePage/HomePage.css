@@ -1,0 +1,167 @@
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- HERO ---------- */
+
+.hero-section {
+  padding: 3rem 20%;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 🔥 THIS */
+  gap: .5rem;
+}
+
+.hero-actions {
+  margin-top: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+
+  flex-wrap: wrap; /* mobile-safe */
+}
+
+
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.tagline {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* ---------- LANGUAGE CAROUSEL ---------- */
+
+.language-carousel {
+  margin: 2rem auto;
+  width: 200px;
+  height: 120px;
+  border-radius: 12px;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow:
+    0 0 20px var(--glow),
+    inset 0 0 10px rgba(255,255,255,0.05);
+  transition: all 0.4s ease;
+}
+
+.language-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.language-name {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  opacity: 0.9;
+}
+
+/* ---------- PLAY BUTTON ---------- */
+
+.play-button {
+  margin-top: 2rem;
+  align-self: center;
+  font-size: 1.2rem;
+  padding: 0.9rem 2.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  color: black;
+}
+
+/* ---------- INFO SECTIONS ---------- */
+
+.info-section {
+  padding: 5rem 10%;
+}
+
+.info-section.alt {
+  background: #0f172a;
+}
+
+.info-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- STEPS ---------- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.step {
+  background: #020617;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.step-num {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+}
+
+/* ---------- FEATURES ---------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  font-size: 1.1rem;
+}
+
+
+/* ---------- TITLE ---------- */
+.typed-title {
+  font-size: 4rem;
+  font-family: "JetBrains Mono", monospace;
+
+  display: inline-block; /* ✅ NOT flex */
+  white-space: nowrap;
+}
+
+.typed-text {
+  color: #38bdf8;
+  text-shadow:
+    0 0 8px rgba(56,189,248,0.8),
+    0 0 18px rgba(56,189,248,0.6),
+    0 0 32px rgba(56,189,248,0.4);
+}
+
+/* ---------- CURSOR ---------- */
+
+.cursor {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  margin-left: 4px;
+
+  background: #38bdf8;
+  vertical-align: baseline;
+
+  box-shadow:
+    0 0 8px rgba(56,189,248,0.9),
+    0 0 16px rgba(56,189,248,0.7);
+
+  animation: blink 1s steps(1) infinite;
+}
+
+
+
+

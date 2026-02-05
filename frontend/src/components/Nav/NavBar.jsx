@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Languages } from "./languages";
 import "./Navbar.css";
+import "../HomePage/HomePage.css"
 
 
 function Navbar() {
@@ -21,8 +22,12 @@ function Navbar() {
         className="navbar-brand"
         onClick={() => navigate("/")}
       >
-        Code<span>Racer</span>
+        <span className="brand-text">
+          Code<span className="brand-accent">Racer</span>
+        </span>
+        <span className="brand-cursor" />
       </div>
+
 
       {/* Right: Controls */}
       <div className="navbar-controls">
