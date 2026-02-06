@@ -25,9 +25,11 @@ function SinglePlayerGame() {
   const [isFocused, setIsFocused] = useState(true)
   const [mistakeStart, setMistakeStart] = useState(null)
   const wpmArrayRef = useRef([]);
+  const keystrokeTimesRef = useRef([]);
   const [gamestate, setGamestate] = useState(true)
   const mistakesRef = useRef(0);
-    const containerRef = useRef(null);
+  const containerRef = useRef(null);
+
   // get username from auth context
 
   
@@ -65,14 +67,27 @@ function SinglePlayerGame() {
       setIntervalID(setInterval(()=>{
         let currTime = Math.floor((Date.now()-initTime.current)/ 1000);
         setTime(currTime)
-        if (currTime > wpmArrayRef.current.length) {
-          let diff = currTime - wpmArrayRef.current.length
-          for (let i = 0; i < diff; i++) {
-            wpmArrayRef.current.push(Math.round(60*(userInputRef.current.length/(5*(wpmArrayRef.current.length + i + 1)))))
-          }
+        
+       const WINDOW_MS = 10_000; // 10 seconds
+        const now = Date.now();
 
-          console.log(wpmArrayRef.current)
+        // keep only keystrokes within the window
+        keystrokeTimesRef.current = keystrokeTimesRef.current.filter(
+          (t) => now - t <= WINDOW_MS
+        );
+
+        const charsInWindow = keystrokeTimesRef.current.length;
+
+        // WPM = (chars / 5) * (60 / windowSeconds)
+        const rollingWpm = Math.round(
+          (charsInWindow / 5) * (60 / (WINDOW_MS / 1000))
+        );
+
+        // push once per second
+        if (currTime > wpmArrayRef.current.length) {
+          wpmArrayRef.current.push(rollingWpm);
         }
+        
       }, 50))
     }
     if (['Shift', 'Control', 'Alt', ''].includes(e.key)) {
@@ -163,8 +178,11 @@ function SinglePlayerGame() {
         }
     }
     else {
-      updatedInput.push(e.key)
-      if (updatedInput[updatedInput.length-1] != codeArray[updatedInput.length-1]) {
+      updatedInput.push(e.key);
+
+      keystrokeTimesRef.current.push(Date.now());
+
+      if (updatedInput[updatedInput.length - 1] !== codeArray[updatedInput.length - 1]) {
         mistakesRef.current++;
       }
     }
@@ -200,6 +218,7 @@ function SinglePlayerGame() {
       setUserInput([])
       userInputRef.current = []
       wpmArrayRef.current = []
+      keystrokeTimesRef.current = [];
       clearInterval(intervalID)
       if (gameDivRef.current) {
         gameDivRef.current.focus();

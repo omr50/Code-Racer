@@ -7,41 +7,50 @@ import replay from '../../media/new_game_gif.gif'
 
 const EndGame = (props) => {
   const navigate = useNavigate()
-  
+
+  const Metric = ({ label, value }) => (
+  <div className="metric-card">
+    <div className="metric-label">{label}</div>
+    <div className="metric-value">{value}</div>
+  </div>
+);
+
   return (
-    <div>
+  <div className="endgame-root">
+    <div className="endgame-panel">
+      
 
-      <div className="results">
-        <span className="metric">
-          <div className="metric-title">words per minute</div>
-          <div className="metric-var">{props.wpm}</div>
-        </span>
-
-        <span className="metric">
-          <div className="metric-title">time</div> 
-          <div className="metric-var">{props.time}s</div>
-        </span>
-        <span className="metric">
-          <div className="metric-title">mistakes</div>
-          <div className="metric-var">{props.mistakes}</div>
-        </span>
-        <span className="metric">
-          <div className="metric-title">accuracy</div>
-          <div className="metric-var">{props.accuracy}%</div>
-        </span>
-
+      <div className="metrics-grid">
+        <Metric label="WPM" value={props.wpm} />
+        <Metric label="Time" value={`${props.time}s`} />
+        <Metric label="Mistakes" value={props.mistakes} />
+        <Metric label="Accuracy" value={`${props.accuracy}%`} />
       </div>
 
       <div className="chart-container">
-        <WpmChart data={props.wpmArray}></WpmChart>
+        <WpmChart data={props.wpmArray} />
       </div>
 
-      <br></br>
-      <span className="end-button rotate" onClick={()=>{props.changeGameState(true)}}>new game &#160;<span className="refresh">&#8635;</span></span>
-      <span className="end-button shift" onClick={()=>{navigate('/')}}>home &#160;<span className="home-button">&#8592;</span></span>
+      <div className="endgame-actions">
+        <button
+          className="endgame-btn primary"
+          onClick={() => props.changeGameState(true)}
+        >
+          <span className="spin">⟳</span> New Game
+        </button>
 
+        <button
+          className="endgame-btn secondary"
+          onClick={() => navigate("/")}
+        >
+          ← Home
+        </button>
+
+      </div>
     </div>
-  )
+  </div>
+);
+
 
 }
 

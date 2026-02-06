@@ -2,7 +2,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Languages } from "./languages";
 import "./Navbar.css";
-import "../HomePage/HomePage.css"
 
 
 function Navbar() {
@@ -23,7 +22,7 @@ function Navbar() {
         onClick={() => navigate("/")}
       >
         <span className="brand-text">
-          Code<span className="brand-accent">Racer</span>
+          &lt;CodeRacer/&gt;
         </span>
         <span className="brand-cursor" />
       </div>
@@ -38,7 +37,7 @@ function Navbar() {
         >
           {Languages.map(l => (
             <option key={l} value={l.language}>
-              {l.symbol + " " + l.language.toUpperCase()}
+              {l.symbol + " " + l.name}
             </option>
           ))}
         </select>

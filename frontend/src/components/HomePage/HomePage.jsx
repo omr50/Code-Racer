@@ -1,37 +1,48 @@
 import TypedTitle from "./TypedTitle";
 import LanguageCarousel from "./LanguageCarousel";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Languages } from "../Nav/languages";
 
 export default function HomePage() {
-
   const navigate = useNavigate();
 
-  const startGame = () => {
-    navigate(`/game/c`);
+  // 🔥 Single source of truth
+  const [languageIndex, setLanguageIndex] = useState(0);
+  const activeLanguage = Languages[languageIndex];
+
+  const play = (language) => {
+    navigate(`/game/${language}`);
   };
 
   return (
     <div className="home">
-
-      {/* HERO */}
-      {/* HERO */}
       <section className="hero-section">
-        <TypedTitle text="Code Racer" />
+        <TypedTitle text="> Code Racer" />
 
         <p className="tagline">
-          A competitive typing game — but with real code.
+          A competitive typing game - but with real code.
         </p>
 
         <div className="hero-actions">
-          <LanguageCarousel />
-          <button className="play-button" onClick={startGame}>
-            ▶ Play Now
+          <LanguageCarousel
+            index={languageIndex}
+            setIndex={setLanguageIndex}
+          />
+
+          <button
+            className="play-button"
+            style={{
+              "--accent": activeLanguage.color,
+            }}
+            onClick={() => play(activeLanguage.language)}
+          >
+            ▶ Play
           </button>
         </div>
       </section>
 
-
-      {/* HOW IT WORKS */}
+       {/* HOW IT WORKS */}
       <section className="info-section">
         <h2>How It Works</h2>
 
@@ -67,7 +78,6 @@ export default function HomePage() {
           <div>🏁 Competitive and skill-based</div>
         </div>
       </section>
-
     </div>
   );
 }
