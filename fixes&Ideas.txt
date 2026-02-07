@@ -28,3 +28,7 @@
   - tabs currently exit you out of the code snippet box and messes up the time.
   
   - possibly allow users to submit errors (get back the id of the actual one that caused the error and persist it)
+
+
+  - im thinking tabs can just be auto skipped for consistency
+    - this is probably the best case, since users will be used to not using it for most of the snippets

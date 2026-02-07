@@ -29,6 +29,7 @@ function SinglePlayerGame() {
   const [gamestate, setGamestate] = useState(true)
   const mistakesRef = useRef(0);
   const containerRef = useRef(null);
+  const caretIndexRef = useRef(0);
 
   // get username from auth context
 
@@ -44,9 +45,17 @@ function SinglePlayerGame() {
         let className = "char";
 
         if (index < userInput.length) {
-        className += userInput[index] === char ? " correct" : " wrong";
-        } else if (index === userInput.length) {
-        className += " caret";
+          const isCorrect = userInput[index] === char;
+
+          if (mistakeStart !== null && index >= mistakeStart) {
+            className += " wrong forced-wrong";
+          } else {
+            className += isCorrect ? " correct" : " wrong";
+          }
+        }
+
+        else if (index === userInput.length) {
+          className += " caret";
         }
 
         return (
@@ -60,6 +69,7 @@ function SinglePlayerGame() {
     // Ignore tabs and meta keys like shift and ctrl
     console.log(e.key)
     console.log('every', checkpointRef.current)
+
     e.stopPropagation();
     if (!start){
       setStart(true)
@@ -90,6 +100,7 @@ function SinglePlayerGame() {
         
       }, 50))
     }
+
     if (['Shift', 'Control', 'Alt', ''].includes(e.key)) {
       e.preventDefault();
       return;
@@ -100,39 +111,16 @@ function SinglePlayerGame() {
     }
     let updatedInput = [...userInputRef.current];
     let codeArray = codeRef.current.split('')
-    
+    const expectedChar = codeArray[updatedInput.length];
+   
+    // END GAME HERE
     if (mistakeStart === null && userInput.length + 1 === codeArray.length && e.key === codeArray[codeArray.length - 1]) {
-      // if user finishes the game, end it
-      // and store their info in the db.
-      // if the user is not a guest then send
-      // the data otherwise don't.
 
-    //   if (username) {
-    //     // since the user exists we send their data to the 
-    //     // endpoint to be saved in the database.
-    //       console.log("sending game info")
-    //       apiClient.post(`/user/saveGame/${username}`, {
-    //         username: username,
-    //         wpm: Math.floor(60 * (codeRef.current.length / (5 * time))),
-    //         accuracy: Math.floor(100 * (codeRef.current.length - mistakesRef.current)/codeRef.current.length)
-    //       },{
-    //       headers: {
-    //         'Authorization': `Bearer ${token}`,
-    //         // must add that the content will be json
-    //         // to avoid error.
-    //         'Content-Type' : 'application/json'
-    //     }})
-    //     .then(response => console.log("Sucessfully saved data"))
-    //     .catch(error => console.log("unable to save data", error))
-    //   }
-    
-      // either way if user or guest we want to set the game state
-      // to false and clear the intervalID so that our set Interval
-      // stops.
       setGamestate(false)
       clearInterval(intervalID)
       
     }
+    
     if (e.key === 'Backspace') {
       // so if user hits backspace on new line, we want them to go back to the previous line. There
       // is \n, and spaces, so we have to take those into account.
@@ -157,6 +145,14 @@ function SinglePlayerGame() {
     }
     else { 
       updatedInput.pop()
+
+      while (
+        updatedInput.length > 0 &&
+        (codeArray[updatedInput.length] === "\t" || codeArray[updatedInput.length] == '\n')
+      ) {
+        console.log('tab backspaced')
+        updatedInput.pop();
+      }
     }
       // if we undo the mistake get rid of the
       // mistake start index.
@@ -183,6 +179,9 @@ function SinglePlayerGame() {
       keystrokeTimesRef.current.push(Date.now());
 
       if (updatedInput[updatedInput.length - 1] !== codeArray[updatedInput.length - 1]) {
+        if (mistakeStart === null) {
+          setMistakeStart(updatedInput.length - 1);
+        }
         mistakesRef.current++;
       }
     }
@@ -197,6 +196,13 @@ function SinglePlayerGame() {
     }
     setUserInput(updatedInput);
     userInputRef.current = updatedInput;
+
+    while (codeArray[updatedInput.length] === "\t" && e.key != "Backspace") {
+      // just advance the expected position
+      updatedInput.length++;
+      console.log("TAB HIT")
+    }
+
   }
 
   useEffect(() => {

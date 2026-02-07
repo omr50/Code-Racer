@@ -150,3 +150,17 @@
     -0.5px  0.5px 0 #605858,
      0.5px  0.5px 0 #4e4848;
 }
+
+.char.forced-wrong {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.15);
+}
+
+.char.caret.forced-wrong {
+  animation: blink-error 1s infinite;
+}
+
+@keyframes blink-error {
+  0%, 100% { background: rgba(248, 113, 113, 0.2); }
+  50% { background: rgba(248, 113, 113, 0.4); }
+}
