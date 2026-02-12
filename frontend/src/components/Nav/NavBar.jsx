@@ -30,6 +30,19 @@ function Navbar() {
 
       {/* Right: Controls */}
       <div className="navbar-controls">
+        <button
+          className="navbar-play"
+          onClick={startGame}
+        >
+         Signup 
+        </button>
+
+        <button
+          className="navbar-play"
+          onClick={startGame}
+        >
+         Login 
+        </button>
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
