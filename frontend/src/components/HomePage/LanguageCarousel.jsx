@@ -50,7 +50,7 @@ export default function LanguageCarousel({ index, setIndex }) {
       </button>
 
       <div className="language-icon">{lang.img}</div>
-    <div className="language-name">{lang.name}</div>
+      <div className="language-name">{lang.name}</div>
 
       <button className="carousel-arrow right" onClick={next}>
         ›

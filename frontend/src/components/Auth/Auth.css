@@ -1,0 +1,126 @@
+/* ================= OVERLAY ================= */
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+}
+
+/* ================= MODAL ================= */
+
+.auth-modal {
+  position: relative;
+  width: 380px;
+  padding: 2.5rem;
+  border-radius: 16px;
+
+  background: #020617;
+  box-shadow:
+    0 0 40px rgba(56,189,248,0.25),
+    inset 0 0 20px rgba(255,255,255,0.03);
+
+  animation: modalFade 0.25s ease;
+  padding: 100px 30px;
+}
+
+@keyframes modalFade {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.auth-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+
+  background: none;
+  border: none;
+  color: #e5e7eb;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.auth-close:hover {
+  color: #38bdf8;
+}
+
+/* ================= SWITCH ================= */
+
+.auth-switch {
+  display: flex;
+  margin-bottom: 2rem;
+  border-radius: 999px;
+  background: #0f172a;
+  padding: 4px;
+}
+
+.auth-switch button {
+  flex: 1;
+  padding: 0.4rem;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: 0.2s;
+}
+
+.auth-switch button.active {
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  color: black;
+}
+
+/* ================= FORM ================= */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form input {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+/* ================= SUBMIT ================= */
+
+.auth-submit {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  color: black;
+
+  transition: 0.25s;
+}
+
+.auth-submit:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 14px rgba(56,189,248,0.7),
+    0 0 30px rgba(129,140,248,0.5);
+}

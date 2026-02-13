@@ -1,3 +1,5 @@
+/* ================= NAVBAR ROOT ================= */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -13,11 +15,11 @@
   width: 100%;
 }
 
-/* Brand */
+/* ================= BRAND ================= */
+
 .navbar-brand {
   font-size: 2rem;
   font-weight: 800;
-  color: white;
   cursor: pointer;
   letter-spacing: 0.5px;
   padding: 20px;
@@ -27,7 +29,6 @@
   align-items: center;
 }
 
-/* Text glow */
 .brand-text {
   color: #f87171;
   text-shadow:
@@ -36,17 +37,16 @@
     0 0 26px rgba(248,113,113,0.4);
 }
 
+/* ================= CONTROLS ================= */
 
-.navbar-brand span {
-  color: #f87171;
-}
-
-/* Controls */
 .navbar-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  padding-right: 30px;
 }
+
+/* ================= SELECT ================= */
 
 .navbar-select {
   background: #020617;
@@ -63,17 +63,105 @@
   border-color: #38bdf8;
 }
 
-.navbar-play {
-  background: #38bdf8;
-  color: #020617;
+/* ================= AUTH BUTTON ================= */
+
+.navbar-auth-btn {
+  padding: 0.55rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
   border: none;
-  padding: 6px 24px;
-  margin: 0px 30px 0px 0px;
-  border-radius: 6px;
+
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+  background-size: 200% 100%;
+  color: black;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-position 0.6s ease;
+}
+
+.navbar-auth-btn:hover {
+  transform: translateY(-2px);
+  background-position: 100% 0;
+  box-shadow:
+    0 0 14px rgba(56,189,248,0.7),
+    0 0 30px rgba(129,140,248,0.5);
+}
+
+/* ================= PLAY BUTTON ================= */
+
+.navbar-play {
+  padding: 0.55rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
+  border: none;
+
+  background: linear-gradient(90deg, #22d3ee, #38bdf8, #22d3ee);
+  background-size: 200% 100%;
+  color: black;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-position 0.6s ease;
 }
 
 .navbar-play:hover {
-  background: #7dd3fc;
+  transform: translateY(-3px);
+  background-position: 100% 0;
+  box-shadow:
+    0 0 18px rgba(34,211,238,0.9),
+    0 0 40px rgba(56,189,248,0.6);
+}
+
+/* ================= USER SECTION ================= */
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.user-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #38bdf8;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.user-email {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* ================= LOGOUT BUTTON ================= */
+
+.navbar-logout {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #e5e7eb;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.navbar-logout:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56,189,248,0.4);
 }

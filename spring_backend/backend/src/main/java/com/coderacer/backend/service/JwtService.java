@@ -7,18 +7,24 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
-
+import org.springframework.beans.factory.annotation.Value;
 @Service
 public class JwtService {
-    private final String SECRET_KEY = "replace_this_with_long_256_bit_key";
 
-    public String generateToken(UserDetails userDetails) {
+    @Value("${jwt.secret}")
+    private String secret;
+
+    @Value("${jwt.expiration-ms:3600000}")
+    private long expirationMs;
+
+    public String generateToken(String username) {
         return Jwts.builder()
-                .setSubject(userDetails.getUsername())
+                .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -26,7 +32,6 @@ public class JwtService {
     public String extractUsername(String token) {
         return extractAllClaims(token).getSubject();
     }
-
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
@@ -46,6 +51,6 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 }
