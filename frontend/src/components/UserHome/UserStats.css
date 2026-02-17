@@ -111,3 +111,41 @@
     row-gap: 0.5rem;
   }
 }
+.charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: stretch;
+}
+
+.chart-wpm {
+  height: 420px;
+}
+
+.chart-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.chart-small {
+  height: 200px; /* clean proportional size */
+  min-height: 180px;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-wpm {
+    height: 350px;
+  }
+
+  .chart-small {
+    height: 220px;
+  }
+}
+

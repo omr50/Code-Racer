@@ -2,6 +2,9 @@ import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import StatsChart from "./StatsChart";
 import "./UserStats.css";
+import WpmChart from "./WpmChart";
+import AccuracyChart from "./AccuracyChart";
+import MistakesChart from "./MistakesChart";
 
 const UserStatsPage = () => {
   const [games, setGames] = useState([]);
@@ -53,7 +56,7 @@ const UserStatsPage = () => {
           <option value="java">Java</option>
           <option value="cpp">C++</option>
           <option value="javascript">Javascript</option>
-          <option value="c#">C#</option>
+          <option value="csharp">C#</option>
           <option value="html">HTML</option>
           <option value="go">Go</option>
           <option value="python">Python</option>
@@ -74,14 +77,24 @@ const UserStatsPage = () => {
       )}
 
       {/* CHART ALWAYS VISIBLE */}
-      <div className="stats-chart-wrapper">
-        <StatsChart
-          data={games.map(g => g.wpm)}
-          labels={games.map(g =>
-            new Date(g.playedAt).toLocaleDateString()
-          )}
-        />
-      </div>
+      <div className="charts-row">
+
+  <div className="chart-wpm">
+    <WpmChart games={games} />
+  </div>
+
+  <div className="chart-side">
+    <div className="chart-small">
+      <AccuracyChart games={games} />
+    </div>
+
+    <div className="chart-small">
+      <MistakesChart games={games} />
+    </div>
+  </div>
+
+</div>
+
 
       {/* GAME LIST */}
       <div className="stats-table">
