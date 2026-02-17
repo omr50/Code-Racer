@@ -165,3 +165,115 @@
   border-color: #38bdf8;
   box-shadow: 0 0 10px rgba(56,189,248,0.4);
 }
+
+/* ================= LANGUAGE SELECT (THEMED PILL) ================= */
+
+.navbar-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: rgba(2, 6, 23, 0.85);
+  color: #e5e7eb;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+
+  padding: 0.55rem 2.4rem 0.55rem 1.1rem; /* extra right padding for chevron */
+  border-radius: 999px;
+
+  font-size: 0.9rem;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+
+  cursor: pointer;
+  line-height: 1;
+
+  /* Match button feel */
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 0 0 rgba(0,0,0,0);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.navbar-select:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56,189,248,0.9);
+  box-shadow:
+    0 0 14px rgba(56,189,248,0.25),
+    0 0 26px rgba(129,140,248,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.navbar-select:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow:
+    0 0 0 3px rgba(56,189,248,0.20),
+    0 0 18px rgba(56,189,248,0.25),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* Make the options a bit more readable */
+.navbar-select option {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* Add a chevron using a background-image (works broadly) */
+.navbar-select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, #94a3b8 50%),
+    linear-gradient(135deg, #94a3b8 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    calc(100% - 18px) calc(50% - 2px),
+    calc(100% - 12px) calc(50% - 2px),
+    100% 0;
+  background-size:
+    6px 6px,
+    6px 6px,
+    2.4rem 100%;
+  background-repeat: no-repeat;
+}
+
+/* Optional: align select height with your buttons more closely */
+.navbar-select {
+  min-height: 38px;
+}
+
+.navbar-select {
+  font-family: "JetBrains Mono", monospace;
+  text-transform: none;
+  letter-spacing: 0.4px;
+}
+
+/* Make it feel like code output */
+.navbar-select {
+  text-shadow:
+    0 0 10px rgba(56,189,248,0.18),
+    0 0 20px rgba(129,140,248,0.10);
+}
+
+/* Optional: subtle scanline vibe */
+.navbar-select {
+  background-image:
+    linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0.00)),
+    linear-gradient(45deg, transparent 50%, #94a3b8 50%),
+    linear-gradient(135deg, #94a3b8 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    0 0,
+    calc(100% - 18px) calc(50% - 2px),
+    calc(100% - 12px) calc(50% - 2px),
+    100% 0;
+  background-size:
+    100% 100%,
+    6px 6px,
+    6px 6px,
+    2.4rem 100%;
+  background-repeat: no-repeat;
+}

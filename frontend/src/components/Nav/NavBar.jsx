@@ -9,10 +9,11 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { email, logout } = useAuth();
+  const { email, username, logout } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
 
   const [language, setLanguage] = useState("javascript");
+  const [languageColor, setLanguageColor] = useState("#F7DF1E");
 
   const startGame = () => {
     navigate(`/game/${language}`);
@@ -37,13 +38,13 @@ function Navbar() {
         <div className="navbar-controls">
 
           {/* Auth Section */}
-          {email ? (
-            <div className="navbar-user">
+          {username ? (
+            <div className="navbar-user" onClick={() => navigate('/user')}>
               <div className="user-badge">
                 {email.charAt(0).toUpperCase()}
               </div>
 
-              <span className="user-email">{email}</span>
+              <span className="user-email">{username}</span>
 
               <button
                 className="navbar-logout"
@@ -68,8 +69,8 @@ function Navbar() {
             className="navbar-select"
           >
             {Languages.map(l => (
-              <option key={l.language} value={l.language}>
-                {l.symbol + " " + l.name}
+              <option key={l.language} style={{ color: l?.color || "#e5e7eb" }} value={l.language}>
+                {l.name}
               </option>
             ))}
           </select>

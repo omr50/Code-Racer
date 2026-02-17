@@ -49,8 +49,8 @@ export default function HomePage() {
         <div className="steps">
           <div className="step">
             <span className="step-num">01</span>
-            <h3>Join a Race</h3>
-            <p>Get matched instantly with other players.</p>
+            <h3>Start a Race</h3>
+            <p>Pick a language from the menu above.</p>
           </div>
 
           <div className="step">
@@ -61,7 +61,7 @@ export default function HomePage() {
 
           <div className="step">
             <span className="step-num">03</span>
-            <h3>Win on Accuracy</h3>
+            <h3>Stay Accurate</h3>
             <p>Mistakes slow you down. Precision wins races.</p>
           </div>
         </div>

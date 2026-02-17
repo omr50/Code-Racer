@@ -13,7 +13,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -40,12 +42,13 @@ public class AuthService {
 
         User user = new User();
         user.setEmail(request.getEmail());
+        user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(Role.USER);
         userRepository.save(user);
 
         String token = jwtService.generateToken(user.getEmail());
-        return new AuthResponse(token);
+        return new AuthResponse(token, user.getUsername(), user.getEmail());
     }
 
     public AuthResponse login(AuthRequest request) {
@@ -55,7 +58,8 @@ public class AuthService {
 
         String email = auth.getName(); // authenticated identity
         String token = jwtService.generateToken(email);
-        return new AuthResponse(token);
+        User user = userRepository.findByEmail(request.getEmail()).get();
+        return new AuthResponse(token, user.getUsername(), user.getEmail());
     }
 }
 

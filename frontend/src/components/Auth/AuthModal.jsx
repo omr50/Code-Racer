@@ -7,6 +7,7 @@ export default function AuthModal({ close }) {
   const [mode, setMode] = useState("login");
 
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");   // ✅ add
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -14,36 +15,47 @@ export default function AuthModal({ close }) {
 
   const { login } = useAuth();
 
-  const stopPropagation = (e) => {
-    e.stopPropagation();
-  };
+  const stopPropagation = (e) => e.stopPropagation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      if (mode === "signup" && password !== confirmPassword) {
-        setError("Passwords do not match");
-        return;
+      if (mode === "signup") {
+        if (password !== confirmPassword) {
+          setError("Passwords do not match");
+          return;
+        }
+        if (!username.trim()) {
+          setError("Username is required");
+          return;
+        }
       }
 
-      const endpoint =
+      const endpoint = mode === "login" ? "/auth/login" : "/auth/register";
+
+      // ✅ payload differs by mode
+      const payload =
         mode === "login"
-          ? "/auth/login"
-          : "/auth/register";
+          ? { email, password }
+          : { email, username, password };
 
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}${endpoint}`,
-        { email, password }
+        payload
       );
 
       const token = response.data.token;
+      const username = response.data.username;
+      console.log("working login?", token, username)
 
-      // UPDATE GLOBAL CONTEXT
-      login(email, token);
+      // If your AuthContext login() only takes (email, token) keep this:
+      login(email, username, token);
 
-      // close modal
+      // If you update AuthContext to store username too, do:
+      // login({ email, username, token });
+
       close();
     } catch (err) {
       setError("Invalid credentials or user already exists");
@@ -53,9 +65,7 @@ export default function AuthModal({ close }) {
   return (
     <div className="auth-overlay" onClick={close}>
       <div className="auth-modal" onClick={stopPropagation}>
-        <button className="auth-close" onClick={close}>
-          ✕
-        </button>
+        <button className="auth-close" onClick={close}>✕</button>
 
         <div className="auth-switch">
           <button
@@ -81,6 +91,17 @@ export default function AuthModal({ close }) {
             onChange={(e) => setEmail(e.target.value)}
           />
 
+          {/* ✅ username input only for signup */}
+          {mode === "signup" && (
+            <input
+              type="text"
+              placeholder="Username"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          )}
+
           <input
             type="password"
             placeholder="Password"
@@ -95,9 +116,7 @@ export default function AuthModal({ close }) {
               placeholder="Confirm Password"
               required
               value={confirmPassword}
-              onChange={(e) =>
-                setConfirmPassword(e.target.value)
-              }
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           )}
 

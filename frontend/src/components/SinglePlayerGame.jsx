@@ -8,6 +8,7 @@ import "prismjs/themes/prism-tomorrow.css";
 import "./CleanSinglePlayerGame.css"
 import EndGame from "./EndGame/EndGame";
 import { Languages } from "./Nav/languages";
+import { useAuth } from "../context/AuthContext";
 
 function SinglePlayerGame() {
   const navigate = useNavigate();
@@ -21,7 +22,6 @@ function SinglePlayerGame() {
   const initTime = useRef(0);
   const [time, setTime] = useState(0);
   const [intervalID, setIntervalID] = useState(null)
-  const gameDivRef = useRef(null);
   const [isFocused, setIsFocused] = useState(true)
   const [mistakeStart, setMistakeStart] = useState(null)
   const wpmArrayRef = useRef([]);
@@ -30,15 +30,71 @@ function SinglePlayerGame() {
   const mistakesRef = useRef(0);
   const containerRef = useRef(null);
   const caretIndexRef = useRef(0);
+  const {token} = useAuth()
+
 
   // get username from auth context
 
   
   useEffect(() => {
-    if (gameDivRef.current) {
-      gameDivRef.current.focus();
+    if (containerRef.current) {
+      containerRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    const refocus = (e) => {
+      if (!gamestate || !containerRef.current) return;
+
+      // if you're clicking inside the code container, do nothing
+      if (containerRef.current.contains(e.target)) return;
+
+      // let the browser finish its focus changes, then force focus back
+      requestAnimationFrame(() => {
+        containerRef.current?.focus();
+      });
+    };
+
+    // capture phase so we run BEFORE most other handlers
+    window.addEventListener("pointerdown", refocus, true);
+    window.addEventListener("mousedown", refocus, true);
+
+    return () => {
+      window.removeEventListener("pointerdown", refocus, true);
+      window.removeEventListener("mousedown", refocus, true);
+    };
+  }, [gamestate]);
+
+  useEffect(() => {
+    if (!gamestate && token) {
+
+      const totalChars = codeRef.current.length;
+      const wpm = Math.floor((totalChars / 5) / (time / 60));
+      const accuracy = Math.floor(
+        100 * (totalChars - mistakesRef.current) / totalChars
+      );
+
+
+      axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/games`,
+        {
+          wpm,
+          accuracy,
+          mistakes: mistakesRef.current,
+          durationSeconds: time,
+          language
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log('send info to server')
+    }
+  }, [gamestate]);
+
 
     const renderTypedOverlay = () =>
     snippet.split("").map((char, index) => {
@@ -138,8 +194,8 @@ function SinglePlayerGame() {
       // so the backspace should only scroll back up to top by a bit if we are on a
       // checkpoint that takes us back to the previous line. Otherwise removing one
       // letter will take you back one line which is not what we want.
-      if (gameDivRef.current) {
-        gameDivRef.current.scrollTop -= 30;
+      if (containerRef.current) {
+        containerRef.current.scrollTop -= 30;
       }
 
     }
@@ -168,8 +224,8 @@ function SinglePlayerGame() {
       updatedInput.push('\n')
 
         if (updatedInput[updatedInput.length-1] === codeArray[updatedInput.length-1]) {
-          if (gameDivRef.current) {
-            gameDivRef.current.scrollTop += 30;
+          if (containerRef.current) {
+            containerRef.current.scrollTop += 30;
           }
         }
     }
@@ -226,8 +282,8 @@ function SinglePlayerGame() {
       wpmArrayRef.current = []
       keystrokeTimesRef.current = [];
       clearInterval(intervalID)
-      if (gameDivRef.current) {
-        gameDivRef.current.focus();
+      if (containerRef.current) {
+        containerRef.current.focus();
       }
       codeRef.current = "";
       for (const prop in checkpointRef.current) {

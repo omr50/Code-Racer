@@ -1,0 +1,113 @@
+.userstats-root {
+  min-height: 100vh;
+  width: 100%;
+  background: #020617;
+
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+/* CENTERED CONTAINER */
+.userstats-container {
+  width: 100%;
+  max-width: 1400px;     /* looks great on 27" */
+  min-width: 320px;
+
+  /* 75% feel without breaking layout */
+  padding: 0 2rem;
+}
+
+/* TOP BAR */
+.stats-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stats-topbar h1 {
+  font-family: "JetBrains Mono", monospace;
+  color: #38bdf8;
+  font-size: clamp(1.5rem, 2vw, 2.2rem);
+}
+
+.stats-topbar select {
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+/* PERSONAL BEST */
+.best-card {
+  background: #0f172a;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 0 25px rgba(56,189,248,0.15);
+}
+
+.best-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+.best-value {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 700;
+  color: #38bdf8;
+  margin: 0.5rem 0;
+}
+
+.best-meta {
+  opacity: 0.7;
+}
+
+/* CHART */
+.stats-chart-wrapper {
+  height: clamp(250px, 35vh, 400px);
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+/* TABLE */
+.stats-table {
+  background: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s ease;
+}
+
+.table-row:hover {
+  background: rgba(56,189,248,0.08);
+}
+
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.6;
+}
+
+/* 🔥 RESPONSIVE BREAKPOINT */
+@media (max-width: 900px) {
+  .userstats-container {
+    padding: 0 1rem;
+  }
+
+  .table-row {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 0.5rem;
+  }
+}
