@@ -38,7 +38,7 @@ const WpmChart = ({ games = [] }) => {
         },
         plugins: {
           legend: {
-            labels: { color: "#e5e7eb" },
+            display: false
           },
           title: {
             display: true,

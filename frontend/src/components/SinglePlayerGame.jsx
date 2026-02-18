@@ -70,9 +70,11 @@ function SinglePlayerGame() {
 
       const totalChars = codeRef.current.length;
       const wpm = Math.floor((totalChars / 5) / (time / 60));
-      const accuracy = Math.floor(
-        100 * (totalChars - mistakesRef.current) / totalChars
-      );
+      const rawAccuracy =
+        100 * (totalChars - mistakesRef.current) / totalChars;
+
+      const accuracy = Math.max(0, Math.floor(rawAccuracy));
+
 
 
       axios.post(
@@ -314,9 +316,11 @@ function SinglePlayerGame() {
   if (!gamestate) {
   const totalChars = codeRef.current.length;
   const wpm = Math.floor((totalChars / 5) / (time / 60));
-  const accuracy = Math.floor(
-    100 * (totalChars - mistakesRef.current) / totalChars
-  );
+  const rawAccuracy =
+  100 * (totalChars - mistakesRef.current) / totalChars;
+
+  const accuracy = Math.max(0, Math.floor(rawAccuracy));
+
 
   return (
     <EndGame

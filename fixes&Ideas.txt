@@ -1,17 +1,16 @@
 - add red for incorrect space (enter or any other character instead of space)
   for now it just goes unnoticed
 
-- make the box only fit the code
-
-- some way to make the code snippets have color like a code editor
-
 - cursor should blink to allow you to see the character or at least be a bit opaque
 
-- allow user to type if focused in the whole page, not specific element, or inform them they aren't focused
+- leaderboard 
+  - all time
+  - most recent ("updating", in mem top 100 or in redis)
+    - for now i think in mem is fine (concurrent access data structure)
 
 - when going to new game reset timer to 0 even before they type
 
-- if there's an error best to make everything after it red so user knows to go back to it
+- do a "create account to see your improvement: stats like wpm, accuracy, mistakes chart & game history"
 
 - make html not have red text/green text, or make the (correct/incorrect) lighting better
 - features:
@@ -32,3 +31,32 @@
 
   - im thinking tabs can just be auto skipped for consistency
     - this is probably the best case, since users will be used to not using it for most of the snippets
+
+
+- deal with expired token issues 
+  - user should probably get another token from server 
+  - or get logged out 
+  - or server should refresh their token on their request
+
+
+- zero mistake mode & other modes:
+  - currently have zero mistakes mode
+  - add other modes
+    - mistakes allowed mode
+    - exit game if mistake mode? (PERFECT MODE)
+    - flash mode? code disappears (memory mode?)
+
+- local storage caching of games played and wpm charts
+  - prevent excess calls to the DB
+
+
+
+Completed:
+
+- make the box only fit the code
+
+- some way to make the code snippets have color like a code editor
+
+- allow user to type if focused in the whole page, not specific element, or inform them they aren't focused
+
+- if there's an error best to make everything after it red so user knows to go back to it

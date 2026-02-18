@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Chart, registerables } from "chart.js";
+import { Languages } from "../Nav/languages";
 
 Chart.register(...registerables);
 

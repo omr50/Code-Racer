@@ -5,6 +5,15 @@ import "./UserStats.css";
 import WpmChart from "./WpmChart";
 import AccuracyChart from "./AccuracyChart";
 import MistakesChart from "./MistakesChart";
+import { Languages } from "../Nav/languages";
+
+function findSVG(language) {
+  for (let lang of Languages) {
+    if (lang.language === language) {
+      return {"name":lang.name, "img": lang.img};
+    } 
+  }
+}
 
 const UserStatsPage = () => {
   const [games, setGames] = useState([]);
@@ -103,12 +112,13 @@ const UserStatsPage = () => {
             No games played for this language yet.
           </div>
         ) : (
+            
           games.map((g, i) => (
             <div key={g.id} className="table-row">
               <div>#{i + 1}</div>
               <div>{g.wpm} WPM</div>
               <div>{g.accuracy}%</div>
-              <div>{g.language}</div>
+              <div>{findSVG(g.language).img}</div>
               <div>{g.durationSeconds}s</div>
             </div>
           ))
