@@ -72,18 +72,3 @@ Track recent games with:
 - PostgreSQL
 
 ---
-
-## 🎯 Project Focus
-
-This project demonstrates:
-
-- Real-time input handling
-- Performance analytics visualization
-- Secure full-stack integration
-- Responsive dashboard design
-- Stateful UI engineering
-- Clean REST API architecture
-
----
-
-Built to combine interactive frontend engineering with secure backend design and performance tracking.
