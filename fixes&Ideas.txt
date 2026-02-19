@@ -24,20 +24,10 @@
   - add the enter emoji again when about to enter
 
   - tabs in the code snippet should have an emoji for it 
+
   - tabs currently exit you out of the code snippet box and messes up the time.
   
   - possibly allow users to submit errors (get back the id of the actual one that caused the error and persist it)
-
-
-  - im thinking tabs can just be auto skipped for consistency
-    - this is probably the best case, since users will be used to not using it for most of the snippets
-
-
-- deal with expired token issues 
-  - user should probably get another token from server 
-  - or get logged out 
-  - or server should refresh their token on their request
-
 
 - zero mistake mode & other modes:
   - currently have zero mistakes mode
@@ -60,3 +50,12 @@ Completed:
 - allow user to type if focused in the whole page, not specific element, or inform them they aren't focused
 
 - if there's an error best to make everything after it red so user knows to go back to it
+
+- im thinking tabs can just be auto skipped for consistency
+  - this is probably the best case, since users will be used to not using it for most of the snippets
+
+- deal with expired token issues 
+  - user should probably get another token from server 
+  - or get logged out 
+  - or server should refresh their token on their request
+

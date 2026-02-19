@@ -45,7 +45,8 @@ export default function AuthModal({ close }) {
         `${import.meta.env.VITE_BACKEND_URL}${endpoint}`,
         payload
       );
-
+      
+      console.log("Here is the response status", response.status)
       const token = response.data.token;
       const username = response.data.username;
       console.log("working login?", token, username)

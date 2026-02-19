@@ -6,6 +6,8 @@ import WpmChart from "./WpmChart";
 import AccuracyChart from "./AccuracyChart";
 import MistakesChart from "./MistakesChart";
 import { Languages } from "../Nav/languages";
+import { useAuth } from "../../context/AuthContext"
+import api from "../../api";
 
 function findSVG(language) {
   for (let lang of Languages) {
@@ -25,20 +27,14 @@ const UserStatsPage = () => {
 
   const fetchGames = async () => {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/games`,
-        {
-          params: language !== "ALL" ? { language } : {},
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const res = await api.get("/api/games", {
+        params: language !== "ALL" ? { language } : {},
+      });
 
       setGames(res.data);
     } catch (err) {
-      console.error(err);
-      setGames([]); // ensure array
+        console.error(err);
+        setGames([]); // ensure array
     }
   };
 
