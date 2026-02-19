@@ -31,7 +31,7 @@ function SinglePlayerGame() {
   const containerRef = useRef(null);
   const caretIndexRef = useRef(0);
   const {token} = useAuth()
-
+  const [showAuth, setShowAuth] = useState(false); // if you want to open modal
 
   // get username from auth context
 
@@ -277,6 +277,9 @@ function SinglePlayerGame() {
     if (gamestate){
       setSnippet('')
       initTime.current = 0
+      setTime(0);
+      clearInterval(intervalID)
+      setIntervalID(null);
       mistakesRef.current = 0
       setStart(false)
       setUserInput([])
@@ -336,6 +339,7 @@ function SinglePlayerGame() {
 
 
   return (
+    <>
     <div className="game-contain">
     <div className="game-page">
       {/* HEADER */}
@@ -385,7 +389,25 @@ function SinglePlayerGame() {
         />
     </div>
     </div>
+    
     </div>
+    
+
+
+    {!token && (
+      <div className="signup-callout">
+        <div className="signup-title">Track your progress 📈</div>
+        <div className="signup-sub">
+          Create an account to see WPM trends, accuracy, mistakes chart, and match history.
+        </div>
+        <button className="signup-btn" onClick={() => setShowAuth(true)}>
+          Create Account
+        </button>
+      </div>
+    )}
+
+  </>
+
   );
 }
 

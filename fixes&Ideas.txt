@@ -1,5 +1,4 @@
-- add red for incorrect space (enter or any other character instead of space)
-  for now it just goes unnoticed
+- change the red / wrong color to be stronger for now it just not as tough, the red for background and for color 
 
 - cursor should blink to allow you to see the character or at least be a bit opaque
 
@@ -13,21 +12,11 @@
 - do a "create account to see your improvement: stats like wpm, accuracy, mistakes chart & game history"
 
 - make html not have red text/green text, or make the (correct/incorrect) lighting better
-- features:
-  - account
-  - if no account save to local storage
-  - wpm from each game saved to construct chart along with date / time
-      - total words typed in lifetime
-      - the total mistakes per game chart
-      - filter per languagea
-
+- if no account save to local storage
   - add the enter emoji again when about to enter
 
-  - tabs in the code snippet should have an emoji for it 
 
-  - tabs currently exit you out of the code snippet box and messes up the time.
   
-  - possibly allow users to submit errors (get back the id of the actual one that caused the error and persist it)
 
 - zero mistake mode & other modes:
   - currently have zero mistakes mode
@@ -39,6 +28,7 @@
 - local storage caching of games played and wpm charts
   - prevent excess calls to the DB
 
+- possibly allow users to submit errors (get back the id of the actual one that caused the error and persist it)
 
 
 Completed:
@@ -58,4 +48,12 @@ Completed:
   - user should probably get another token from server 
   - or get logged out 
   - or server should refresh their token on their request
+
+- tabs currently exit you out of the code snippet box and messes up the time.
+
+- account
+  - wpm from each game saved to construct chart along with date / time
+      - total words typed in lifetime
+      - the total mistakes per game chart
+      - filter per languagea
 

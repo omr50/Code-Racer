@@ -98,6 +98,37 @@
   visibility: hidden;
 }
 
+/* ================= STRONGER WRONG ================= */
+
+.wrong {
+  color: #ff3b3b; /* stronger red */
+}
+
+.char.wrong {
+  visibility: visible;
+  color: #ff3b3b;
+  background: rgba(255, 59, 59, 0.28);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 59, 59, 0.55) inset;
+}
+
+/* when you're past mistakeStart (forced wrong range) */
+.char.forced-wrong {
+  visibility: visible;
+  color: #ff1f2d;
+  background: rgba(255, 31, 45, 0.34);
+  border-radius: 1px;
+  box-shadow:
+    0 0 0 1px rgba(255, 31, 45, 0.70) inset,
+    0 0 16px rgba(255, 31, 45, 0.18);
+}
+
+/* optional: subtle "shake" feel without moving layout */
+.char.forced-wrong {
+  text-shadow: 0 0 10px rgba(255, 31, 45, 0.25);
+}
+
+
 .char.correct,
 .char.wrong,
 .char.caret {
@@ -108,14 +139,52 @@
   color: #22c55e;
 }
 
-.wrong {
-  color: #ef4444;
-}
-
 .caret {
   background: #7ec8e3;
 }
 
+/* ================= CARET (BLINK UNDERLINE) ================= */
+
+.caret {
+  background: none; /* important: do NOT cover the character */
+  background: #7ec8e3;
+  position: relative;
+}
+
+/* underline cursor */
+.char.caret::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(56, 189, 248, 0.95);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+  animation: caretBlink 1s steps(2, start) infinite;
+}
+
+/* optional: faint block highlight so it's easier to track */
+.char.caret {
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25) inset;
+  border-radius: 4px;
+}
+
+@keyframes caretBlink {
+  50% { opacity: 0; background: none; }
+}
+
+/* caret when you're in forced-wrong mode */
+.char.caret.forced-wrong::after {
+  background: rgba(255, 31, 45, 0.95);
+  box-shadow: 0 0 12px rgba(255, 31, 45, 0.35);
+  animation: caretBlinkError 0.9s steps(2, start) infinite;
+}
+
+@keyframes caretBlinkError {
+  50% { opacity: 0; }
+}
 
 
 .cursor {
@@ -163,4 +232,41 @@
 @keyframes blink-error {
   0%, 100% { background: rgba(248, 113, 113, 0.2); }
   50% { background: rgba(248, 113, 113, 0.4); }
+}
+
+.signup-callout {
+  margin-top: 20vh;
+  padding: 12px 14px;
+}
+
+.signup-title {
+  font-weight: 800;
+  color: #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.signup-sub {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.signup-btn {
+  border: none;
+  cursor: pointer;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  color: black;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #38bdf8);
+  background-size: 200% 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.6s ease;
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  background-position: 100% 0;
+  box-shadow:
+    0 0 14px rgba(56,189,248,0.7),
+    0 0 30px rgba(129,140,248,0.5);
 }

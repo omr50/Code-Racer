@@ -39,12 +39,18 @@ function Navbar() {
 
           {/* Auth Section */}
           {username ? (
-            <div className="navbar-user" onClick={() => navigate('/user')}>
-              <div className="user-badge">
-                {email.charAt(0).toUpperCase()}
-              </div>
-
-              <span className="user-email">{username}</span>
+            <div className="navbar-user">
+              <button
+                type="button"
+                className="navbar-user-btn"
+                onClick={() => navigate("/user")}
+                aria-label="Open user profile"
+              >
+                <div className="user-badge">
+                  {email?.charAt(0).toUpperCase()}
+                </div>
+                <span className="user-email">{username}</span>
+              </button>
 
               <button
                 className="navbar-logout"
