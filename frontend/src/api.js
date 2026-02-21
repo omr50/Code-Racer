@@ -23,7 +23,7 @@ export const initApiInterceptors = ({ logout, navigate }) => {
 
       console.log("[api interceptor] status:", status, "url:", url);
 
-      if ((status === 401 || status === 403) && !String(url).includes("/auth/")) {
+      if ((status === 401 || status === 403 || status > 399) && !String(url).includes("/auth/")) {
         logout();
         // send them home
         navigate("/", { replace: true });

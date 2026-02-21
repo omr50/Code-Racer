@@ -1,15 +1,7 @@
-- change the red / wrong color to be stronger for now it just not as tough, the red for background and for color 
-
-- cursor should blink to allow you to see the character or at least be a bit opaque
-
 - leaderboard 
   - all time
   - most recent ("updating", in mem top 100 or in redis)
     - for now i think in mem is fine (concurrent access data structure)
-
-- when going to new game reset timer to 0 even before they type
-
-- do a "create account to see your improvement: stats like wpm, accuracy, mistakes chart & game history"
 
 - make html not have red text/green text, or make the (correct/incorrect) lighting better
 - if no account save to local storage
@@ -32,6 +24,14 @@
 
 
 Completed:
+
+- when going to new game reset timer to 0 even before they type
+
+- do a "create account to see your improvement: stats like wpm, accuracy, mistakes chart & game history"
+
+- change the red / wrong color to be stronger for now it just not as tough, the red for background and for color 
+
+- cursor should blink to allow you to see the character or at least be a bit opaque
 
 - make the box only fit the code
 

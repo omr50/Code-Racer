@@ -9,6 +9,7 @@ import "./CleanSinglePlayerGame.css"
 import EndGame from "./EndGame/EndGame";
 import { Languages } from "./Nav/languages";
 import { useAuth } from "../context/AuthContext";
+import AuthModal from "./Auth/AuthModal";
 
 function SinglePlayerGame() {
   const navigate = useNavigate();
@@ -257,7 +258,8 @@ function SinglePlayerGame() {
 
     while (codeArray[updatedInput.length] === "\t" && e.key != "Backspace") {
       // just advance the expected position
-      updatedInput.length++;
+      // updatedInput.length++;
+      updatedInput.push("\t");
       console.log("TAB HIT")
     }
 
@@ -405,7 +407,7 @@ function SinglePlayerGame() {
         </button>
       </div>
     )}
-
+    {showAuth && <AuthModal close={() => setShowAuth(false)} />}
   </>
 
   );
